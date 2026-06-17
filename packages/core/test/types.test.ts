@@ -1,5 +1,5 @@
 import { describe, expect, expectTypeOf, it } from 'bun:test'
-import { createNavo, Navo } from '../src/main'
+import { createNavo } from '../src/main'
 
 describe('createNavo', () => {
   it('should create a navo instance', () => {

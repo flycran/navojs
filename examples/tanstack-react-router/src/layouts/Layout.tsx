@@ -66,10 +66,11 @@ export default function Layout() {
               items={menuItems}
               onClick={({ key }) => {
                 const path = getPathById(key)
-                
-                path && navigate({
-                  to: path,
-                })
+
+                path &&
+                  navigate({
+                    to: path,
+                  })
               }}
               className="border-r-0 h-full"
             />

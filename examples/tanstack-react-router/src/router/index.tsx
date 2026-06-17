@@ -124,21 +124,12 @@ const routeTree = rootRoute.addChildren([
   rootIndexRoute,
   systemRoute.addChildren([
     permissionsRoute,
-    usersRoute.addChildren([
-      usersIndexRoute,
-      userListRoute,
-      userDetailRoute,
-    ]),
+    usersRoute.addChildren([usersIndexRoute, userListRoute, userDetailRoute]),
   ]),
   workspaceRoute.addChildren([
     dashboardRoute,
     monitorRoute,
-    documentsRoute.addChildren([
-      documentsIndexRoute,
-      docGuideRoute,
-      docApiRoute,
-      docFaqRoute,
-    ]),
+    documentsRoute.addChildren([documentsIndexRoute, docGuideRoute, docApiRoute, docFaqRoute]),
   ]),
   aboutRoute,
 ])

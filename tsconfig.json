@@ -10,12 +10,7 @@
     "skipLibCheck": true,
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": false,
-    "types": [
-      "@types/bun"
-    ]
+    "types": ["@types/bun"]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

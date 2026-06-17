@@ -54,7 +54,7 @@ describe('buildNavoNodes', () => {
     expect(navo1.nodes[0].path).toEqual(outputPath.nav1)
     expect(navo1.nodes[0].children?.[0].path).toEqual(outputPath.menu1)
     expect(navo1.nodes[0].children?.[1].path).toEqual(outputPath.menu2)
-    
+
     expect(navo2.nodes[0].path).toEqual(outputPath.nav1)
     expect(navo2.nodes[0].children?.[0].path).toEqual(outputPath.menu1)
     expect(navo2.nodes[0].children?.[1].path).toEqual(outputPath.menu2)

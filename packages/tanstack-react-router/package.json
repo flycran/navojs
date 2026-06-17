@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "bun --watch ./build.ts",
     "build": "bun ./build.ts",
+    "check": "tsgo --noEmit --project tsconfig.json",
     "test": "bun test && tsc --noEmit --project tsconfig.test.json"
   },
   "main": "dist/index.js",
