@@ -1,2 +1,2 @@
 export type * from './main'
-export { createNavo, Navo } from './main'
+export { createNavo, getResolvePath, Navo } from './main'

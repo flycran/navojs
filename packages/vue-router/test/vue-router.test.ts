@@ -14,6 +14,7 @@ describe('generateRoutes', () => {
     expect(routes[0]).toMatchObject({ name: 'home', path: '/' })
     expect(routes[1]).toMatchObject({ name: 'about', path: '/about' })
     expect(routes[2]).toMatchObject({ path: '' })
+    expect(routes[2].name).toBeString()
     expect(routes[2].redirect).toBeFunction()
   })
 

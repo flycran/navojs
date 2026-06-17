@@ -1,8 +1,8 @@
-import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navo/core'
-import { type InjectionKey, inject, provide, reactive, type VNode } from 'vue'
-import type { RouteRecordRaw } from 'vue-router'
+import { getResolvePath, type CanAccess, type Navo, type NavoNode, type NavoNodeInput } from '@navo/core'
+import { type InjectionKey, type SlotsType, type VNode, defineComponent, inject, provide, reactive } from 'vue'
+import type { RouteRecordRaw, RouteRecordSingleViewWithChildren } from 'vue-router'
 
-export type NavRouteEscapeHatch = Omit<RouteRecordRaw, 'path' | 'name' | 'children'>
+export type NavRouteEscapeHatch = Omit<RouteRecordSingleViewWithChildren, 'path' | 'name' | 'children'>
 
 declare module '@navo/core' {
   interface NavoNodeInput {
@@ -22,54 +22,54 @@ export interface NavoContextProps {
 
 export const NavoKey: InjectionKey<NavoContextProps> = Symbol('Navo')
 
-export type NavoProviderProps<T extends NavoNodeInput[]> = {
-  navo: Navo<T>
-}
-
 /** Navo Provider */
-export function NavoProvider<T extends NavoNodeInput[]>(
-  props: NavoProviderProps<T>,
-  { slots }: { slots: { default?: () => VNode[] } }
-) {
-  const state = reactive({
-    nodes: props.navo.nodes,
-    idMap: props.navo.idMap,
-    authedNodes: props.navo.authedNodes,
-    authedIdMap: props.navo.authedIdMap,
-    authedRootResolvePath: props.navo.authedRootResolvePath,
-  })
+export const NavoProvider = defineComponent({
+  name: 'NavoProvider',
+  props: {
+    navo: { type: Object, required: true },
+  },
+  slots: Object as SlotsType<{ default?: () => VNode[] }>,
+  setup(props: { navo: Navo<NavoNodeInput[]> }, { slots }) {
+    const state = reactive({
+      nodes: props.navo.nodes,
+      idMap: props.navo.idMap,
+      authedNodes: props.navo.authedNodes,
+      authedIdMap: props.navo.authedIdMap,
+      authedRootResolvePath: props.navo.authedRootResolvePath,
+    })
 
-  const value: NavoContextProps = {
-    originNavo: props.navo,
-    get nodes() {
-      return state.nodes
-    },
-    get idMap() {
-      return state.idMap
-    },
-    get authedNodes() {
-      return state.authedNodes
-    },
-    get authedIdMap() {
-      return state.authedIdMap
-    },
-    get authedRootResolvePath() {
-      return state.authedRootResolvePath
-    },
-    onCanAccess: (canAccess?: CanAccess) => {
-      props.navo.authenticat(canAccess)
-      state.nodes = props.navo.nodes
-      state.idMap = props.navo.idMap
-      state.authedNodes = props.navo.authedNodes
-      state.authedIdMap = props.navo.authedIdMap
-      state.authedRootResolvePath = props.navo.authedRootResolvePath
-    },
-  }
+    const value: NavoContextProps = {
+      originNavo: props.navo,
+      get nodes() {
+        return state.nodes
+      },
+      get idMap() {
+        return state.idMap
+      },
+      get authedNodes() {
+        return state.authedNodes
+      },
+      get authedIdMap() {
+        return state.authedIdMap
+      },
+      get authedRootResolvePath() {
+        return state.authedRootResolvePath
+      },
+      onCanAccess: (canAccess?: CanAccess) => {
+        props.navo.authenticat(canAccess)
+        state.nodes = props.navo.nodes
+        state.idMap = props.navo.idMap
+        state.authedNodes = props.navo.authedNodes
+        state.authedIdMap = props.navo.authedIdMap
+        state.authedRootResolvePath = props.navo.authedRootResolvePath
+      },
+    }
 
-  provide(NavoKey, value)
+    provide(NavoKey, value)
 
-  return () => slots.default?.()
-}
+    return () => slots.default?.()
+  },
+})
 
 /** 使用 Navo Context（内部使用） */
 export function useNavoContext(): NavoContextProps {
@@ -97,15 +97,15 @@ export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>): RouteR
     }
 
     if (navNodes.length) {
+      // 为有 children 的父路由添加 index redirect
+      // 每次导航时动态计算，因为鉴权结果会变化
       routes.push({
+        name: `${navNodes[0].parent?.id ?? 'root'}-index`,
         path: '',
         redirect: () => {
-          const parentNode = navNodes[0].parent
-          if (parentNode) {
-            const resolved = navo.authedIdMap.get(parentNode.id)
-            if (resolved) return resolved.path
-          }
-          return navo.authedRootResolvePath
+          // 从当前节点的鉴权后子节点中计算 resolve 路径
+          const authedChildren = navo.authedIdMap.get(navNodes[0].id)?.children
+          return getResolvePath(authedChildren) ?? navNodes[0].path
         },
       })
     }
