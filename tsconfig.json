@@ -11,6 +11,5 @@
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": false,
     "types": ["@types/bun"]
-  },
-  "include": ["**/*.ts", "**/*.tsx"]
+  }
 }

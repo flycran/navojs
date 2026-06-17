@@ -1,11 +1,31 @@
 {
   "name": "@navo/vue-router",
   "version": "1.0.0",
-  "description": "",
+  "description": "Navo integration for Vue Router",
+  "type": "module",
   "scripts": {
-    "test": "echo 'No tests specified'"
+    "dev": "bun --watch ./build.ts",
+    "build": "bun ./build.ts",
+    "check": "tsgo --noEmit --project tsconfig.json",
+    "test": " tsgo --noEmit --project tsconfig.test.json && bun test"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "src/index.ts",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.js",
+    "types": "./src/index.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@navo/config": "workspace:*",
+    "@navo/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": ">=3",
+    "vue-router": ">=4"
+  }
 }

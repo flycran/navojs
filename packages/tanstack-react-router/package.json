@@ -7,7 +7,7 @@
     "dev": "bun --watch ./build.ts",
     "build": "bun ./build.ts",
     "check": "tsgo --noEmit --project tsconfig.json",
-    "test": "bun test && tsc --noEmit --project tsconfig.test.json"
+    "test": "tsc --noEmit --project tsconfig.test.json && bun test"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
