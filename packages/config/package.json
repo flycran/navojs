@@ -1,0 +1,9 @@
+{
+  "name": "@navo/config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./build.config": "./build.config.ts"
+  }
+}
