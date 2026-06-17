@@ -1,4 +1,4 @@
-import type { BuildNodes, CanAccess, Navo, NavoNode, NavoNodeInput } from '@navo/core'
+import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navo/core'
 import { type InjectionKey, inject, provide, reactive, type VNode } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -78,21 +78,8 @@ export function useNavoContext(): NavoContextProps {
   return navo
 }
 
-export type BuildRoute<T> = T extends NavoNode
-  ? (T['route'] extends NavRouteEscapeHatch ? Omit<T['route'], keyof NavoNode> : object) & {
-      path: T['originPath']
-      name: T['id']
-    } & (T['children'] extends NavoNode[] ? { children: BuildRoutes<T['children']> } : object)
-  : never
-
-export type BuildRoutes<T, D extends RouteRecordRaw[] = []> = T extends NavoNode[]
-  ? T extends [infer A, ...infer B]
-    ? BuildRoutes<B, [...D, BuildRoute<A> & RouteRecordRaw]>
-    : D
-  : never
-
 /** 生成 vue-router routes */
-export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>) {
+export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>): RouteRecordRaw[] {
   const navNodes = navo.nodes
   const r = (navNodes: NavoNode[]): RouteRecordRaw[] => {
     const routes: RouteRecordRaw[] = []
@@ -125,5 +112,5 @@ export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>) {
     return routes
   }
 
-  return r(navNodes) as BuildRoutes<BuildNodes<T>>
+  return r(navNodes)
 }

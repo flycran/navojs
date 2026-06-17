@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test'
+import type { Component } from 'vue'
 import { createNavo, generateRoutes } from '../src/index'
 
 describe('generateRoutes', () => {
@@ -10,9 +11,10 @@ describe('generateRoutes', () => {
     const routes = generateRoutes(navo)
 
     expect(routes).toHaveLength(3) // 2 routes + 1 index redirect
-    expect(routes[0]).toMatchObject({ id: 'home', path: '/' })
-    expect(routes[1]).toMatchObject({ id: 'about', path: '/about' })
-    expect(routes[2]).toMatchObject({ index: true })
+    expect(routes[0]).toMatchObject({ name: 'home', path: '/' })
+    expect(routes[1]).toMatchObject({ name: 'about', path: '/about' })
+    expect(routes[2]).toMatchObject({ path: '' })
+    expect(routes[2].redirect).toBeFunction()
   })
 
   it('should generate nested routes with children', () => {
@@ -29,28 +31,30 @@ describe('generateRoutes', () => {
     const routes = generateRoutes(navo)
 
     expect(routes).toHaveLength(2) // 1 route + 1 index redirect
-    expect(routes[0]).toMatchObject({ id: 'dashboard', path: '/dashboard' })
+    expect(routes[0]).toMatchObject({ name: 'dashboard', path: '/dashboard' })
     expect(routes[0].children).toHaveLength(3) // 2 children + 1 index redirect
-    expect(routes[0].children?.[0]).toMatchObject({ id: 'overview', path: 'overview' })
-    expect(routes[0].children?.[1]).toMatchObject({ id: 'settings', path: 'settings' })
-    expect(routes[0].children?.[2]).toMatchObject({ index: true })
+    expect(routes[0].children?.[0]).toMatchObject({ name: 'overview', path: 'overview' })
+    expect(routes[0].children?.[1]).toMatchObject({ name: 'settings', path: 'settings' })
+    expect(routes[0].children?.[2]).toMatchObject({ path: '' })
+    expect(routes[0].children?.[2].redirect).toBeFunction()
   })
 
   it('should preserve route escape hatch properties', () => {
+    const DummyComponent: Component = {}
     const navo = createNavo([
       {
         id: 'home',
         path: '/',
         route: {
-          loader: () => 'data',
-          caseSensitive: true,
+          component: DummyComponent,
+          meta: { title: 'Home' },
         },
       },
     ])
     const routes = generateRoutes(navo)
 
-    expect(routes[0].loader).toBeFunction()
-    expect(routes[0].caseSensitive).toBe(true)
+    expect(routes[0].component).toBe(DummyComponent)
+    expect(routes[0].meta).toEqual({ title: 'Home' })
   })
 
   it('should handle nodes without explicit path', () => {
@@ -58,8 +62,7 @@ describe('generateRoutes', () => {
     const routes = generateRoutes(navo)
 
     expect(routes).toHaveLength(2) // 1 route + 1 index redirect
-    expect(routes[0]).toMatchObject({ id: 'root' })
-    expect(routes[0].path).toBeUndefined()
+    expect(routes[0]).toMatchObject({ name: 'root', path: '' })
   })
 
   it('should generate index redirect pointing to parent resolve path', () => {
@@ -78,8 +81,10 @@ describe('generateRoutes', () => {
     const routes = generateRoutes(navo)
 
     // 父级 index redirect
-    expect(routes[1]).toMatchObject({ index: true })
+    expect(routes[1]).toMatchObject({ path: '' })
+    expect(routes[1].redirect).toBeFunction()
     // 子级 index redirect
-    expect(routes[0].children?.[2]).toMatchObject({ index: true })
+    expect(routes[0].children?.[2]).toMatchObject({ path: '' })
+    expect(routes[0].children?.[2].redirect).toBeFunction()
   })
 })

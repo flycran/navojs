@@ -1,4 +1,4 @@
-import type { BuildNodes, CanAccess, Navo, NavoNode, NavoNodeInput } from '@navo/core'
+import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navo/core'
 import { createContext, useContext, useMemo, useState } from 'react'
 import {
   type BaseRouteObject,
@@ -75,23 +75,8 @@ export function NavoProvider<T extends NavoNodeInput[]>({ children, navo }: Navo
   return <NavoContext.Provider value={value}>{children}</NavoContext.Provider>
 }
 
-export type BuildRoute<T> = T extends NavoNode
-  ? T['route'] extends NavNodeEscapeHatch
-    ? Omit<T['route'], keyof NavoNode>
-    : {} & {
-        path: T['originPath']
-        id: T['id']
-      } & (T['children'] extends NavoNode[] ? { children: BuildRoutes<T['children']> } : object)
-  : never
-
-export type BuildRoutes<T, D extends RouteObject[] = []> = T extends NavoNode[]
-  ? T extends [infer A, ...infer B]
-    ? BuildRoutes<B, [...D, BuildRoute<A>]>
-    : D
-  : never
-
 /** 生成react router routes */
-export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>) {
+export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>): RouteObject[] {
   const navNodes = navo.nodes
   const r = (navNodes: NavoNode[]) => {
     const routes: RouteObject[] = []
@@ -117,5 +102,5 @@ export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>) {
     return routes
   }
 
-  return r(navNodes) as BuildRoutes<BuildNodes<T>>
+  return r(navNodes)
 }
