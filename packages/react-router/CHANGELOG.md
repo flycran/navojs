@@ -1,5 +1,11 @@
 # @navojs/react-router
 
+## 1.0.5
+
+### Patch Changes
+
+- 85db8a5: 为 onCanAccess 提供稳定引用
+
 ## 1.0.4
 
 ### Patch Changes
