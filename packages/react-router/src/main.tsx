@@ -1,5 +1,5 @@
 import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navojs/core'
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import {
   type BaseRouteObject,
   Navigate,
@@ -54,22 +54,24 @@ export function NavoProvider<T extends NavoNodeInput[]>({ children, navo }: Navo
     authedRootResolvePath: navo.authedRootResolvePath,
   })
 
+  const onCanAccess = useCallback((canAccess?: CanAccess) => {
+    navo.authenticat(canAccess)
+    setState({
+      nodes: navo.nodes,
+      idMap: navo.idMap,
+      authedNodes: navo.authedNodes,
+      authedIdMap: navo.authedIdMap,
+      authedRootResolvePath: navo.authedRootResolvePath,
+    })
+  }, [navo])
+
   const value = useMemo(
     () => ({
       ...state,
       originNavo: navo,
-      onCanAccess: (canAccess?: CanAccess) => {
-        navo.authenticat(canAccess)
-        setState({
-          nodes: navo.nodes,
-          idMap: navo.idMap,
-          authedNodes: navo.authedNodes,
-          authedIdMap: navo.authedIdMap,
-          authedRootResolvePath: navo.authedRootResolvePath,
-        })
-      },
+      onCanAccess,
     }),
-    [navo, state]
+    [navo, state, onCanAccess]
   )
 
   return <NavoContext.Provider value={value}>{children}</NavoContext.Provider>
