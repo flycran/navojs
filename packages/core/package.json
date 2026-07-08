@@ -20,7 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@navojs/config": "workspace:*"
   }
 }

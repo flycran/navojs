@@ -91,7 +91,7 @@
     "packages/core": {
       "name": "@navojs/core",
       "version": "1.0.0",
-      "dependencies": {
+      "devDependencies": {
         "@navojs/config": "workspace:*",
       },
     },
@@ -99,9 +99,11 @@
       "name": "@navojs/react-router",
       "version": "1.0.0",
       "dependencies": {
-        "@navojs/config": "workspace:*",
         "@navojs/core": "workspace:*",
         "@types/react": "19.2.14",
+      },
+      "devDependencies": {
+        "@navojs/config": "workspace:*",
       },
       "peerDependencies": {
         "react": ">=18",
@@ -112,9 +114,11 @@
       "name": "@navojs/tanstack-react-router",
       "version": "1.0.0",
       "dependencies": {
-        "@navojs/config": "workspace:*",
         "@navojs/core": "workspace:*",
         "@types/react": "19.2.14",
+      },
+      "devDependencies": {
+        "@navojs/config": "workspace:*",
       },
       "peerDependencies": {
         "@tanstack/react-router": ">=1",
@@ -125,8 +129,10 @@
       "name": "@navojs/vue-router",
       "version": "1.0.0",
       "dependencies": {
-        "@navojs/config": "workspace:*",
         "@navojs/core": "workspace:*",
+      },
+      "devDependencies": {
+        "@navojs/config": "workspace:*",
       },
       "peerDependencies": {
         "vue": ">=3",

@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@navojs-examples/react-router", "@navojs-examples/tanstack-react-router", "@navojs-examples/vue-router"]
+  "ignore": ["@navo-examples/react-router", "@navo-examples/tanstack-react-router", "@navo-examples/vue-router"]
 }

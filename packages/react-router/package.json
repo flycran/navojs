@@ -27,9 +27,11 @@
     "directory": "packages/react-router"
   },
   "dependencies": {
-    "@navojs/config": "workspace:*",
     "@navojs/core": "workspace:*",
     "@types/react": "19.2.14"
+  },
+  "devDependencies": {
+    "@navojs/config": "workspace:*"
   },
   "peerDependencies": {
     "react-router": "^7.18.0",

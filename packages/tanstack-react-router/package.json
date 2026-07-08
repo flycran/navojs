@@ -21,9 +21,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@navojs/config": "workspace:*",
     "@navojs/core": "workspace:*",
     "@types/react": "19.2.14"
+  },
+  "devDependencies": {
+    "@navojs/config": "workspace:*"
   },
   "peerDependencies": {
     "@tanstack/react-router": ">=1",
