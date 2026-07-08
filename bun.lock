@@ -7,9 +7,9 @@
       "devDependencies": {
         "@biomejs/biome": "2.4.11",
         "@changesets/cli": "^2.31.0",
-        "@types/bun": "^1.3.12",
-        "@typescript/native-preview": "^7.0.0-dev.20260616.1",
-        "typescript": "^6.0.2",
+        "@types/bun": "^1.3.14",
+        "@typescript/native-preview": "^7.0.0-dev.20260707.2",
+        "typescript": "^6.0.3",
       },
     },
     "examples/react-router": {
@@ -90,14 +90,14 @@
     },
     "packages/core": {
       "name": "@navojs/core",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "devDependencies": {
         "@navojs/config": "workspace:*",
       },
     },
     "packages/react-router": {
       "name": "@navojs/react-router",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "dependencies": {
         "@navojs/core": "workspace:*",
         "@types/react": "19.2.14",
@@ -112,7 +112,7 @@
     },
     "packages/tanstack-react-router": {
       "name": "@navojs/tanstack-react-router",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "dependencies": {
         "@navojs/core": "workspace:*",
         "@types/react": "19.2.14",
@@ -127,7 +127,7 @@
     },
     "packages/vue-router": {
       "name": "@navojs/vue-router",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "dependencies": {
         "@navojs/core": "workspace:*",
       },
