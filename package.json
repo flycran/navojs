@@ -11,7 +11,9 @@
     "build": "bun run --filter=\"./packages/*\" build",
     "test": "bun run --filter=\"./packages/*\" test",
     "check": "biome check --fix && bun run --filter=\"./packages/*\" check",
-    "dev:examples": "bun run --filter=\"./examples/*\" dev"
+    "dev:examples": "bun run --filter=\"./examples/*\" dev",
+    "changeset:version": "changeset version",
+    "changeset:publish": "bun run build && changeset publish"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@biomejs/biome": "2.4.11",
+    "@changesets/cli": "^2.31.0",
     "@types/bun": "^1.3.12",
     "@typescript/native-preview": "^7.0.0-dev.20260616.1",
     "typescript": "^6.0.2"
