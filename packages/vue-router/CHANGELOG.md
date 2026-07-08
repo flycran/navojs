@@ -1,5 +1,12 @@
 # @navojs/vue-router
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [b51b7b5]
+  - @navojs/core@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
