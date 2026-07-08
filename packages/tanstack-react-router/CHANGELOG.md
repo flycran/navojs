@@ -1,5 +1,12 @@
 # @navojs/tanstack-react-router
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [68f4a6e]
+  - @navojs/core@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes

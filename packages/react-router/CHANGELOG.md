@@ -1,5 +1,13 @@
 # @navojs/react-router
 
+## 1.0.4
+
+### Patch Changes
+
+- 68f4a6e: 发布 core 包只包含生产需要的文件
+- Updated dependencies [68f4a6e]
+  - @navojs/core@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
