@@ -97,7 +97,7 @@
     },
     "packages/react-router": {
       "name": "@navojs/react-router",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "dependencies": {
         "@navojs/core": "workspace:*",
         "@types/react": "19.2.14",
