@@ -1,4 +1,4 @@
-import { generateRoutes } from '@navo/vue-router'
+import { generateRoutes } from '@navojs/vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import { navo } from '../config/navigation'
 import Layout from '../layouts/Layout'

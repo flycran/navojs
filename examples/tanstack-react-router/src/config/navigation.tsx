@@ -1,5 +1,5 @@
 import * as Icon from '@ant-design/icons'
-import { createNavo } from '@navo/tanstack-react-router'
+import { createNavo } from '@navojs/tanstack-react-router'
 import type { ReactNode } from 'react'
 // 从 router 导入 route 实例
 import {
@@ -18,7 +18,7 @@ import {
   workspaceRoute,
 } from '../router'
 
-declare module '@navo/tanstack-react-router' {
+declare module '@navojs/tanstack-react-router' {
   interface NavoMeta {
     icon?: ReactNode
   }

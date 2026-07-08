@@ -1,4 +1,4 @@
-import { useMatchedNodes, useNavo } from '@navo/vue-router'
+import { useMatchedNodes, useNavo } from '@navojs/vue-router'
 import { Layout as AntLayout, Menu } from 'ant-design-vue'
 import { computed, defineComponent } from 'vue'
 import { RouterLink, RouterView, useRouter } from 'vue-router'

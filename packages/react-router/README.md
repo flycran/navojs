@@ -1,0 +1,148 @@
+# @navojs/react-router
+
+React Router integration for [Navo](https://github.com/flycran/navo) — declarative navigation and permission-based routing.
+
+## Installation
+
+```bash
+npm install @navojs/react-router react-router
+```
+
+## Quick Start
+
+### 1. Define your navigation structure
+
+```tsx
+import { createNavo } from '@navojs/react-router'
+
+const navo = createNavo([
+  { id: 'dashboard', label: 'Dashboard', path: '/dashboard' },
+  {
+    id: 'users',
+    label: 'Users',
+    path: '/users',
+    children: [
+      { id: 'user-list', label: 'User List', path: 'list' },
+      { id: 'user-detail', label: 'User Detail', path: ':id', affiliated: true },
+    ],
+  },
+  { id: 'settings', label: 'Settings', path: '/settings' },
+])
+```
+
+### 2. Wrap your app with `NavoProvider`
+
+```tsx
+import { NavoProvider } from '@navojs/react-router'
+import { BrowserRouter } from 'react-router'
+
+function App() {
+  return (
+    <BrowserRouter>
+      <NavoProvider navo={navo}>
+        <AppRoutes />
+      </NavoProvider>
+    </BrowserRouter>
+  )
+}
+```
+
+### 3. Generate routes from your navo structure
+
+```tsx
+import { generateRoutes } from '@navojs/react-router'
+import { useRoutes } from 'react-router'
+
+function AppRoutes() {
+  const routes = generateRoutes(navo)
+  return useRoutes(routes)
+}
+```
+
+## Permission Control
+
+```tsx
+import { useCanAccess } from '@navojs/react-router'
+
+function PermissionGate() {
+  const onCanAccess = useCanAccess()
+
+  useEffect(() => {
+    // Provide your access control logic
+    onCanAccess((node) => {
+      return userPermissions.includes(node.id)
+    })
+  }, [])
+
+  return null
+}
+```
+
+## Hooks
+
+### `useCanAccess()`
+
+Returns the `onCanAccess` callback for setting up permission checks.
+
+### `useMatchedNodes()`
+
+Returns the currently active navigation nodes and their IDs — useful for highlighting menus and breadcrumbs.
+
+```tsx
+const { matchedNodes, matchedIds } = useMatchedNodes()
+// matchedIds: ['dashboard', 'users', 'user-list']
+// matchedNodes: corresponding NavoNode objects
+```
+
+### `useNavo()`
+
+Returns utility functions for working with the navigation tree:
+
+```tsx
+const { nodes, getNodeById, getPathById, hasCanAccess } = useNavo()
+
+// Get all authorized nodes
+nodes.forEach(node => console.log(node.label))
+
+// Check access
+if (hasCanAccess('settings')) { /* ... */ }
+
+// Get path by id
+const path = getPathById('user-list') // '/users/list'
+```
+
+## Route Escape Hatch
+
+You can pass native React Router route properties through the `route` field:
+
+```tsx
+createNavo([
+  {
+    id: 'home',
+    path: '/',
+    route: {
+      loader: () => fetchData(),
+      caseSensitive: true,
+      errorElement: <ErrorPage />,
+    },
+  },
+])
+```
+
+## API
+
+### `generateRoutes(navo)`
+
+Converts a Navo instance into an array of React Router `RouteObject`s with automatic index redirects.
+
+### `NavoProvider`
+
+React context provider that holds the Navo instance and authentication state.
+
+### `NavoRedirect`
+
+Internal component that handles automatic redirection to the resolved path (e.g., redirecting `/users` to `/users/list`).
+
+## License
+
+MIT

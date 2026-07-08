@@ -1,4 +1,4 @@
-import { NavoProvider, useCanAccess } from '@navo/react-router'
+import { NavoProvider, useCanAccess } from '@navojs/react-router'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useEffect } from 'react'
 import { RouterProvider } from 'react-router'

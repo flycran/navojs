@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "@navo/vue-router": "workspace:*",
+    "@navojs/vue-router": "workspace:*",
     "@tailwindcss/vite": "^4.3.1",
     "ant-design-vue": "^4.2.6",
     "tailwindcss": "^4.3.1",

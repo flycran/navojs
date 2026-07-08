@@ -1,4 +1,4 @@
-import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navo/core'
+import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navojs/core'
 import { createContext, useMemo, useState } from 'react'
 
 export interface NavoContextProps {

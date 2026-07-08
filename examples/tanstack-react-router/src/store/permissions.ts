@@ -1,5 +1,5 @@
-import type { NavoNode } from '@navo/tanstack-react-router'
-import { Navo } from '@navo/tanstack-react-router'
+import type { NavoNode } from '@navojs/tanstack-react-router'
+import { Navo } from '@navojs/tanstack-react-router'
 import { atom } from 'jotai'
 
 export type Permission = { id: string; label: string; enabled: boolean }

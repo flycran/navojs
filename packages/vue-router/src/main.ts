@@ -1,10 +1,10 @@
-import { type CanAccess, getResolvePath, type Navo, type NavoNode, type NavoNodeInput } from '@navo/core'
+import { type CanAccess, getResolvePath, type Navo, type NavoNode, type NavoNodeInput } from '@navojs/core'
 import { defineComponent, type InjectionKey, inject, provide, reactive, type SlotsType, type VNode } from 'vue'
 import type { RouteRecordRaw, RouteRecordSingleViewWithChildren } from 'vue-router'
 
 export type NavRouteEscapeHatch = Omit<RouteRecordSingleViewWithChildren, 'path' | 'name' | 'children'>
 
-declare module '@navo/core' {
+declare module '@navojs/core' {
   interface NavoNodeInput {
     route?: NavRouteEscapeHatch
   }

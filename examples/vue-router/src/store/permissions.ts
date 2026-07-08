@@ -1,5 +1,5 @@
-import type { NavoNode } from '@navo/vue-router'
-import { Navo } from '@navo/vue-router'
+import type { NavoNode } from '@navojs/vue-router'
+import { Navo } from '@navojs/vue-router'
 import { computed, reactive } from 'vue'
 
 export interface Permission {

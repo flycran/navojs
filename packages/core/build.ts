@@ -1,4 +1,4 @@
-import { config } from '@navo/config/build.config'
+import { config } from '@navojs/config/build.config'
 
 Bun.build(config)
 

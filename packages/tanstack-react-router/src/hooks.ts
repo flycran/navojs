@@ -1,4 +1,4 @@
-import { Navo, type NavoNode } from '@navo/core'
+import { Navo, type NavoNode } from '@navojs/core'
 import { useMatches } from '@tanstack/react-router'
 import { useContext, useMemo } from 'react'
 import { NavoContext } from './main'

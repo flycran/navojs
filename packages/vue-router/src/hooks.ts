@@ -1,4 +1,4 @@
-import { Navo, type NavoNode } from '@navo/core'
+import { Navo, type NavoNode } from '@navojs/core'
 import { computed, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useNavoContext } from './main'

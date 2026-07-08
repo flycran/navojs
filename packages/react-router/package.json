@@ -1,7 +1,7 @@
 {
-  "name": "@navo/react-router",
+  "name": "@navojs/react-router",
   "version": "1.0.0",
-  "description": "",
+  "description": "React Router integration for Navo — declarative navigation and permission-based routing",
   "type": "module",
   "scripts": {
     "dev": "bun --watch ./build.ts",
@@ -17,12 +17,18 @@
     "require": "./dist/index.js",
     "types": "./src/index.ts"
   },
-  "keywords": [],
-  "author": "",
+  "files": ["dist", "src"],
+  "keywords": ["navo", "react-router", "navigation", "routing", "permissions", "acl"],
+  "author": "flycran",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flycran/navo",
+    "directory": "packages/react-router"
+  },
   "dependencies": {
-    "@navo/config": "workspace:*",
-    "@navo/core": "workspace:*",
+    "@navojs/config": "workspace:*",
+    "@navojs/core": "workspace:*",
     "@types/react": "19.2.14"
   },
   "peerDependencies": {

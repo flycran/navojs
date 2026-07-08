@@ -1,4 +1,4 @@
-import { generateRoutes } from '@navo/react-router'
+import { generateRoutes } from '@navojs/react-router'
 import { createBrowserRouter } from 'react-router'
 import { navo } from '../config/navigation'
 import Layout from '../layouts/Layout'

@@ -1,5 +1,5 @@
 import * as Icon from '@ant-design/icons-vue'
-import { createNavo } from '@navo/vue-router'
+import { createNavo } from '@navojs/vue-router'
 import type { VNode } from 'vue'
 import About from '../pages/About'
 import Dashboard from '../pages/Dashboard'
@@ -11,7 +11,7 @@ import Permissions from '../pages/Permissions'
 import UserDetail from '../pages/UserDetail'
 import UserList from '../pages/UserList'
 
-declare module '@navo/vue-router' {
+declare module '@navojs/vue-router' {
   interface NavoMeta {
     icon?: VNode
   }

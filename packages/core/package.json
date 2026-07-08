@@ -1,5 +1,5 @@
 {
-  "name": "@navo/core",
+  "name": "@navojs/core",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -21,6 +21,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@navo/config": "workspace:*"
+    "@navojs/config": "workspace:*"
   }
 }

@@ -1,4 +1,4 @@
-import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navo/core'
+import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navojs/core'
 import { createContext, useContext, useMemo, useState } from 'react'
 import {
   type BaseRouteObject,
@@ -10,7 +10,7 @@ import {
 
 export type NavNodeEscapeHatch = Omit<BaseRouteObject, 'id' | 'path'>
 
-declare module '@navo/core' {
+declare module '@navojs/core' {
   interface NavoNodeInput {
     route?: NavNodeEscapeHatch
   }

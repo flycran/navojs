@@ -1,4 +1,4 @@
-import { useMatchedNodes, useNavo } from '@navo/tanstack-react-router'
+import { useMatchedNodes, useNavo } from '@navojs/tanstack-react-router'
 import { Link, Outlet, useNavigate } from '@tanstack/react-router'
 import { Layout as AntLayout, Menu } from 'antd'
 import { useEffect, useMemo, useState } from 'react'

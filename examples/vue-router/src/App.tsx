@@ -1,4 +1,4 @@
-import { NavoProvider, useCanAccess } from '@navo/vue-router'
+import { NavoProvider, useCanAccess } from '@navojs/vue-router'
 import { defineComponent, onMounted, watch } from 'vue'
 import { RouterView } from 'vue-router'
 import { navo } from './config/navigation'

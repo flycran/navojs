@@ -1,5 +1,5 @@
 {
-  "name": "@navo/vue-router",
+  "name": "@navojs/vue-router",
   "version": "1.0.0",
   "description": "Navo integration for Vue Router",
   "type": "module",
@@ -21,8 +21,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@navo/config": "workspace:*",
-    "@navo/core": "workspace:*"
+    "@navojs/config": "workspace:*",
+    "@navojs/core": "workspace:*"
   },
   "peerDependencies": {
     "vue": ">=3",

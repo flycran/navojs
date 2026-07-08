@@ -1,5 +1,5 @@
 {
-  "name": "@navo/tanstack-react-router",
+  "name": "@navojs/tanstack-react-router",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -21,8 +21,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@navo/config": "workspace:*",
-    "@navo/core": "workspace:*",
+    "@navojs/config": "workspace:*",
+    "@navojs/core": "workspace:*",
     "@types/react": "19.2.14"
   },
   "peerDependencies": {

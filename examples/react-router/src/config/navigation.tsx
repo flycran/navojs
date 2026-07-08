@@ -1,5 +1,5 @@
 import * as Icon from '@ant-design/icons'
-import { createNavo } from '@navo/react-router'
+import { createNavo } from '@navojs/react-router'
 import type { ReactNode } from 'react'
 import About from '../pages/About'
 import Dashboard from '../pages/Dashboard'
@@ -11,7 +11,7 @@ import Permissions from '../pages/Permissions'
 import UserDetail from '../pages/UserDetail'
 import UserList from '../pages/UserList'
 
-declare module '@navo/react-router' {
+declare module '@navojs/react-router' {
   interface NavoMeta {
     icon?: ReactNode
   }
