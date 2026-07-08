@@ -34,6 +34,9 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Setup npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
       - name: Build
         run: bun run build
 
@@ -44,8 +47,8 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: bun run changeset:version
-          publish: bun run changeset:publish
+          version: bun run ci:version
+          publish: bun run ci:publish
           commit: 'chore: version packages'
           title: 'chore: version packages'
         env:

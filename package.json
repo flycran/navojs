@@ -12,8 +12,8 @@
     "test": "bun run --filter=\"./packages/*\" test",
     "check": "biome check --fix && bun run --filter=\"./packages/*\" check",
     "dev:examples": "bun run --filter=\"./examples/*\" dev",
-    "changeset:version": "changeset version",
-    "changeset:publish": "bun run build && changeset publish"
+    "ci:version": "changeset version && bun update",
+    "ci:publish": "bun run build && for dir in packages/*; do (cd \"$dir\" && bun publish || true); done && changeset tag"
   },
   "keywords": [],
   "author": "",
