@@ -1,6 +1,6 @@
 {
   "name": "@navojs/vue-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Navo integration for Vue Router",
   "type": "module",
   "scripts": {

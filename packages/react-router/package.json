@@ -1,6 +1,6 @@
 {
   "name": "@navojs/react-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Router integration for Navo — declarative navigation and permission-based routing",
   "type": "module",
   "scripts": {
@@ -17,8 +17,18 @@
     "require": "./dist/index.js",
     "types": "./src/index.ts"
   },
-  "files": ["dist", "src"],
-  "keywords": ["navo", "react-router", "navigation", "routing", "permissions", "acl"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "navo",
+    "react-router",
+    "navigation",
+    "routing",
+    "permissions",
+    "acl"
+  ],
   "author": "flycran",
   "license": "MIT",
   "repository": {
