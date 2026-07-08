@@ -1,5 +1,5 @@
 import { Navo, type NavoNode } from '@navo/core'
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useNavoContext } from './main'
 
@@ -69,10 +69,12 @@ export interface UseNavoReturn {
 export function useNavo(): UseNavoReturn {
   const navo = useNavoContext()
 
-  return {
-    nodes: navo.authedNodes,
+  return reactive({
+    get nodes() {
+      return navo.authedNodes
+    },
     getNodeById: (id: string) => navo.authedIdMap.get(id),
     getPathById: (id: string) => navo.authedIdMap.get(id)?.path,
     hasCanAccess: (id: string) => navo.authedIdMap.has(id),
-  }
+  }) as UseNavoReturn
 }

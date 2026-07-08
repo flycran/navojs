@@ -1,7 +1,7 @@
 import { generateRoutes } from '@navo/vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import { navo } from '../config/navigation'
-import Layout from '../layouts/Layout.vue'
+import Layout from '../layouts/Layout'
 
 const routes = [
   {

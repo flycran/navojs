@@ -27,25 +27,29 @@ export function usePermissions() {
   }
 
   const initPermissions = (nodes: NavoNode[]) => {
-    const extract = (list: NavoNode[]): Permission[] => {
-      return list.flatMap((n) => {
-        const items: Permission[] = []
-        if (!Navo.isAffiliated(n)) {
-          items.push({ id: n.id, label: n.label ?? n.id, enabled: false })
-        }
-        if (n.children) {
-          items.push(...extract(n.children))
-        }
-        return items
+    const extract = (list: NavoNode[]): Permission[] =>
+      list.flatMap((n) => {
+        if (n.id === 'permissions') return []
+        if (Navo.isMenu(n)) return [{ id: n.id, label: n.label || n.id, enabled: true }]
+        return n.children ? extract(n.children) : []
       })
-    }
     state.permissions = extract(nodes)
+  }
+
+  const enableAll = () => {
+    state.permissions.forEach((p) => (p.enabled = true))
+  }
+
+  const disableAll = () => {
+    state.permissions.forEach((p) => (p.enabled = false))
   }
 
   return {
     permissions: computed(() => state.permissions),
     enabledIds,
     togglePermission,
+    enableAll,
+    disableAll,
     initPermissions,
   }
 }

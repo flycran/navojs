@@ -1,5 +1,5 @@
-import { getResolvePath, type CanAccess, type Navo, type NavoNode, type NavoNodeInput } from '@navo/core'
-import { type InjectionKey, type SlotsType, type VNode, defineComponent, inject, provide, reactive } from 'vue'
+import { type CanAccess, getResolvePath, type Navo, type NavoNode, type NavoNodeInput } from '@navo/core'
+import { defineComponent, type InjectionKey, inject, provide, reactive, type SlotsType, type VNode } from 'vue'
 import type { RouteRecordRaw, RouteRecordSingleViewWithChildren } from 'vue-router'
 
 export type NavRouteEscapeHatch = Omit<RouteRecordSingleViewWithChildren, 'path' | 'name' | 'children'>
@@ -30,31 +30,13 @@ export const NavoProvider = defineComponent({
   },
   slots: Object as SlotsType<{ default?: () => VNode[] }>,
   setup(props: { navo: Navo<NavoNodeInput[]> }, { slots }) {
-    const state = reactive({
+    const state = reactive<NavoContextProps>({
+      originNavo: props.navo,
       nodes: props.navo.nodes,
       idMap: props.navo.idMap,
       authedNodes: props.navo.authedNodes,
       authedIdMap: props.navo.authedIdMap,
       authedRootResolvePath: props.navo.authedRootResolvePath,
-    })
-
-    const value: NavoContextProps = {
-      originNavo: props.navo,
-      get nodes() {
-        return state.nodes
-      },
-      get idMap() {
-        return state.idMap
-      },
-      get authedNodes() {
-        return state.authedNodes
-      },
-      get authedIdMap() {
-        return state.authedIdMap
-      },
-      get authedRootResolvePath() {
-        return state.authedRootResolvePath
-      },
       onCanAccess: (canAccess?: CanAccess) => {
         props.navo.authenticat(canAccess)
         state.nodes = props.navo.nodes
@@ -63,9 +45,9 @@ export const NavoProvider = defineComponent({
         state.authedIdMap = props.navo.authedIdMap
         state.authedRootResolvePath = props.navo.authedRootResolvePath
       },
-    }
+    })
 
-    provide(NavoKey, value)
+    provide(NavoKey, state)
 
     return () => slots.default?.()
   },

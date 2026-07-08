@@ -1,17 +1,9 @@
-<template>
-  <NavoProvider :navo="navo">
-    <AccessController />
-    <router-view />
-  </NavoProvider>
-</template>
-
-<script setup lang="ts">
 import { NavoProvider, useCanAccess } from '@navo/vue-router'
 import { defineComponent, onMounted, watch } from 'vue'
+import { RouterView } from 'vue-router'
 import { navo } from './config/navigation'
 import { usePermissions } from './store/permissions'
 
-// 无渲染的鉴权控制组件（必须在 NavoProvider 内部）
 const AccessController = defineComponent({
   name: 'AccessController',
   setup() {
@@ -20,13 +12,26 @@ const AccessController = defineComponent({
 
     onMounted(() => {
       initPermissions(navo.nodes)
+      // 初始鉴权
+      onCanAccess((node) => enabledIds.value.has(node.id))
     })
 
     watch(enabledIds, (ids) => {
       onCanAccess((node) => ids.has(node.id))
-    }, { immediate: true })
+    })
 
     return () => null
   },
 })
-</script>
+
+export default defineComponent({
+  name: 'App',
+  setup() {
+    return () => (
+      <NavoProvider navo={navo}>
+        <AccessController />
+        <RouterView />
+      </NavoProvider>
+    )
+  },
+})
