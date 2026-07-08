@@ -1,5 +1,13 @@
 # @navojs/react-router
 
+## 1.0.3
+
+### Patch Changes
+
+- b51b7b5: 修复发布问题
+- Updated dependencies [b51b7b5]
+  - @navojs/core@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
