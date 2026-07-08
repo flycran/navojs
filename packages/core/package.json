@@ -9,6 +9,10 @@
     "check": "tsgo --noEmit --project tsconfig.json",
     "test": "tsgo --noEmit --project tsconfig.test.json && bun test"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "src/index.ts",
