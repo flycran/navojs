@@ -1,5 +1,11 @@
 # @navojs/react-router
 
+## 1.0.6
+
+### Patch Changes
+
+- f3297cd: NavNodeEscapeHatch 接口联合 IndexRouteObject 类型
+
 ## 1.0.5
 
 ### Patch Changes
