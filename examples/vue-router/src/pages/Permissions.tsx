@@ -1,8 +1,4 @@
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  LockOutlined,
-} from '@ant-design/icons-vue'
+import { CheckCircleOutlined, CloseCircleOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { Alert, Card, List, Space, Switch, Tag, Typography } from 'ant-design-vue'
 import { usePermissions } from '../store/permissions'
 

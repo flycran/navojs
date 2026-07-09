@@ -37,11 +37,15 @@ export function usePermissions() {
   }
 
   const enableAll = () => {
-    state.permissions.forEach((p) => (p.enabled = true))
+    state.permissions.forEach((p) => {
+      p.enabled = true
+    })
   }
 
   const disableAll = () => {
-    state.permissions.forEach((p) => (p.enabled = false))
+    state.permissions.forEach((p) => {
+      p.enabled = false
+    })
   }
 
   return {

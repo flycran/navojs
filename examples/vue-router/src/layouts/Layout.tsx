@@ -42,9 +42,7 @@ export default defineComponent({
                   to={nav.path}
                   class={`flex items-center gap-2 px-6 h-full text-sm font-medium border-b-2 transition-colors no-underline ${active ? 'text-blue-400 border-blue-400 bg-slate-800' : 'text-slate-300 border-transparent hover:text-white hover:bg-slate-800'}`}
                 >
-                  <span class={active ? 'text-blue-400' : 'text-slate-400'}>
-                    {nav.meta?.icon}
-                  </span>
+                  <span class={active ? 'text-blue-400' : 'text-slate-400'}>{nav.meta?.icon}</span>
                   {nav.label}
                 </RouterLink>
               )
