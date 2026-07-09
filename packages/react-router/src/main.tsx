@@ -2,13 +2,15 @@ import type { CanAccess, Navo, NavoNode, NavoNodeInput } from '@navojs/core'
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import {
   type BaseRouteObject,
+  type IndexRouteObject,
   Navigate,
-  type NonIndexRouteObject,
   type RouteObject,
   useLocation,
 } from 'react-router'
 
-export type NavNodeEscapeHatch = Omit<BaseRouteObject, 'id' | 'path'>
+export type NavNodeEscapeHatch =
+  | Omit<BaseRouteObject, 'id' | 'path'>
+  | Omit<IndexRouteObject, 'id' | 'path'>
 
 declare module '@navojs/core' {
   interface NavoNodeInput {
@@ -54,16 +56,19 @@ export function NavoProvider<T extends NavoNodeInput[]>({ children, navo }: Navo
     authedRootResolvePath: navo.authedRootResolvePath,
   })
 
-  const onCanAccess = useCallback((canAccess?: CanAccess) => {
-    navo.authenticat(canAccess)
-    setState({
-      nodes: navo.nodes,
-      idMap: navo.idMap,
-      authedNodes: navo.authedNodes,
-      authedIdMap: navo.authedIdMap,
-      authedRootResolvePath: navo.authedRootResolvePath,
-    })
-  }, [navo])
+  const onCanAccess = useCallback(
+    (canAccess?: CanAccess) => {
+      navo.authenticat(canAccess)
+      setState({
+        nodes: navo.nodes,
+        idMap: navo.idMap,
+        authedNodes: navo.authedNodes,
+        authedIdMap: navo.authedIdMap,
+        authedRootResolvePath: navo.authedRootResolvePath,
+      })
+    },
+    [navo]
+  )
 
   const value = useMemo(
     () => ({
@@ -84,7 +89,7 @@ export function generateRoutes<T extends NavoNodeInput[]>(navo: Navo<T>): RouteO
     const routes: RouteObject[] = []
     for (let i = 0; i < navNodes.length; i++) {
       const navNode = navNodes[i]
-      const route: NonIndexRouteObject = {
+      const route: RouteObject = {
         ...navNode.route,
         id: navNode.id,
         path: navNode.originPath,
