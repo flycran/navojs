@@ -2,6 +2,7 @@ import { useMatchedNodes, useNavo } from '@navojs/react-router'
 import { Layout as AntLayout, Menu } from 'antd'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router'
+import { PermissionGuard } from '../components/PermissionGuard'
 
 const { Header, Sider, Content } = AntLayout
 
@@ -73,7 +74,9 @@ export default function Layout() {
           </Sider>
         )}
         <Content className="p-6 overflow-auto">
-          <Outlet />
+          <PermissionGuard>
+            <Outlet />
+          </PermissionGuard>
         </Content>
       </AntLayout>
     </AntLayout>
