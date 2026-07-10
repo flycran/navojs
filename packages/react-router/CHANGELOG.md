@@ -1,5 +1,11 @@
 # @navojs/react-router
 
+## 1.1.0
+
+### Minor Changes
+
+- deb9895: 提供检测当前页面是否具有权限的 hook
+
 ## 1.0.6
 
 ### Patch Changes
