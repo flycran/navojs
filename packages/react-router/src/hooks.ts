@@ -15,7 +15,7 @@ import { NavoContext } from './main'
  * }, [])
  * ```
  */
-export const useCanAccess = () => {
+export const useOnCanAccess = () => {
   const navo = useContext(NavoContext)
   if (!navo) throw new Error('useCanAccess must be used within a NavoProvider.')
   return navo.onCanAccess
@@ -77,4 +77,20 @@ export const useNavo = (): UseNavoReturn => {
     getPathById: (id: string) => navo.authedIdMap.get(id)?.path,
     hasCanAccess: (id: string) => navo.authedIdMap.has(id),
   }
+}
+
+/**
+ * 当前页面是否有权限访问
+ * @example
+ * ```tsx
+ * const canAccess = useCanAccessPage()
+ * if (!canAccess) return <UnauthorizedPage />
+ * ```
+ */
+export const useCanAccess = () => {
+  const navo = useContext(NavoContext)
+  if (!navo) throw new Error('useCanAccessPage must be used within a NavoProvider.')
+  const matches = useMatches()
+  const leafId = matches[matches.length - 1]?.id
+  return leafId ? navo.authedIdMap.has(leafId) : true
 }

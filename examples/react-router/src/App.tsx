@@ -1,4 +1,4 @@
-import { NavoProvider, useCanAccess } from '@navojs/react-router'
+import { NavoProvider, useOnCanAccess } from '@navojs/react-router'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useEffect } from 'react'
 import { RouterProvider } from 'react-router'
@@ -7,7 +7,7 @@ import router, { navo } from './router'
 import { enabledPermissionIdsAtom, initPermissionsAtom } from './store/permissions'
 
 function AccessController() {
-  const onCanAccess = useCanAccess()
+  const onCanAccess = useOnCanAccess()
   const enabledIds = useAtomValue(enabledPermissionIdsAtom)
   const init = useSetAtom(initPermissionsAtom)
 
