@@ -1,6 +1,6 @@
 {
   "name": "@navojs/react-router",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "React Router integration for Navo — declarative navigation and permission-based routing",
   "type": "module",
   "scripts": {
